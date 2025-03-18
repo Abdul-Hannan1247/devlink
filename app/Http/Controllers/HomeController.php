@@ -12,7 +12,12 @@ class HomeController extends Controller
 {
     function index(){
 
-    Product::find(1)->delete();
+    // Product::find(1)->delete();
+    // Product::withTrashed()->find(1)->restore();    // Restoring the soft deleted data.
+    $products= Product::withTrashed()->find(2);
+    $products->forceDelete();
+    dd($products);
+
 
         return view('welcome');
     }
