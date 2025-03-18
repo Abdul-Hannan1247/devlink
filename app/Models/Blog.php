@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Blog extends Model
 {
     use HasFactory;
+
+    function scopeActive($query){
+        return $query->where('status',1);
+    }
 }

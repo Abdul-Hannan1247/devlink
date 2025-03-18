@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -61,7 +62,32 @@ class HomeController extends Controller
     // $user = User::findorfail(1);
     // $user->delete();
 
+//######## Fillable and Mass Assignment  #########
+// User::create([
+//     // 'name' => 'yusuf',
+//     // 'email' => 'yusuf@gmail.com',
+//     // 'password' => '123456',
+//    // 'email_verified_at' => 'Hello world'   // this valuse will not be added as it is not mentioned in fillable (for mass assignment)
+// ]);
 
+// User::insert([
+//         [
+//             'name' => 'yusuf1',
+//             'email' => 'yusu1f@gmail.com',
+//             'password' => '123456',
+
+//         ],
+//         [
+//             'name' => 'yusuf2',
+//             'email' => 'yusu2f@gmail.com',
+//             'password' => '123456',
+
+//         ]
+
+//     ]);
+
+$blogs =Blog::Active()->get();  // no need to write scope before Active.
+dd($blogs);
 
 
 
