@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
@@ -9,14 +10,25 @@ use Symfony\Component\HttpKernel\Event\ViewEvent;
 class FileUploadController extends Controller
 {
     function index(){
-        return view('file-upload');
+        $files = File::all();
+        return view('file-upload', ['files'=>$files]);
+
     }
+
     function store(Request $request){
         // dd($request->all());
         // $file= Storage::disk('local')->put('/',$request->file('file'));
         // $file= $request->file('file')->store('/','');
         $file= $request->file('file')->store('/','public');
+        
+        $fileStore = new File();
+        $fileStore->file_path = $file;
+        $fileStore->save();
+        dd('stored');
+    }
 
-        dd($file);
+    function download(){
+       
+        return Storage::disk('local')->download('yzxi9zVxn9cRggrFNzSRvL5wPJc29p5I3Q52WFzn.jpg');
     }
 }
