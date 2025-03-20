@@ -19,16 +19,16 @@
                          
                          <button type="submit" class="btn btn-primary">Submit</button>
                      </form>
+                     <table>
+                        <tbody>
+                            @foreach ($files as $file )
+                            <td>
+                                <img style="width:100px" src="{{ asset($file->file_path)  }}">
+                            </td>                            
+                            @endforeach
+                        </tbody>
+                     </table>
                  </div>
-                 <table>
-                    <tbody>
-                        @foreach ($files as $file )
-                        <td>
-                            <img style="width: 100px" src="/storage/{{ $file->file_path }}">
-                        </td>                            
-                        @endforeach
-                    </tbody>
-                 </table>
                  <hr>
                  <table>
                     <tbody>
