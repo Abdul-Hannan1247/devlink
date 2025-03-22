@@ -7,10 +7,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Str;
+use Illuminate\Support\Facades\File as HandleFile;
 
 class FileUploadController extends Controller
 {
     function index(){
+        // $file= File::find(11);
+        // HandleFile::delete(public_path($file->file_path));
+        // $file->delete();
+
         $files = File::all();
         return view('file-upload', ['files'=>$files]);
 
@@ -32,7 +37,9 @@ class FileUploadController extends Controller
         $fileStore = new File();
         $fileStore->file_path = '/uploads/'.$path;
         $fileStore->save();
-        dd('stored');
+        // return  redirect()->back();
+        return  redirect()->route('home');
+
     }
 
     function download(){
